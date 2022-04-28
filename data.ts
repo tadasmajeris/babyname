@@ -18,9 +18,11 @@ export enum Popularity {
 } 
 
 export enum Length {
+  ALL = 'All',
   SHORT = 'Short',
   LONG = 'Long',
 }
+
 export const names: Name[] = [
   {
     id: 1,

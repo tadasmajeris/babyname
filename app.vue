@@ -24,63 +24,50 @@
                               });
     selectedNames.value = filteredNames.map(n => n.name);
   }
+
+  const optionsArray = [
+    {
+      title: '1) Gender',
+      category: 'gender',
+      buttons: [Gender.GIRL, Gender.UNISEX, Gender.BOY]
+    },
+    {
+      title: '2) Popularity',
+      category: 'popularity',
+      buttons: [Popularity.TRENDY, Popularity.UNIQUE]
+    },
+    {
+      title: '3) Length',
+      category: 'length',
+      buttons: [Length.ALL, Length.SHORT, Length.LONG]
+    }
+  ]
 </script>
 
 <template>
   <div class="container">
     <h1>bbnm</h1>
     <div class="options">
-
-      <div class="option">
-        <h4>1) Gender</h4>
-        <div class="buttons">
-          <button :class="{active: options.gender==Gender.BOY}" 
-            @click="options.gender=Gender.BOY">Boy
-          </button>
-          <button :class="{active: options.gender==Gender.UNISEX}" 
-            @click="options.gender=Gender.UNISEX">Unisex
-          </button>
-          <button :class="{active: options.gender==Gender.GIRL}"
-            @click="options.gender=Gender.GIRL">Girl
-          </button>
-        </div>
-      </div>
-
-      <div class="option">
-        <h4>2) Popularity</h4>
-        <div class="buttons">
-          <button :class="{active: options.popularity==Popularity.TRENDY}" 
-            @click="options.popularity=Popularity.TRENDY">Trendy
-          </button>
-          <button :class="{active: options.popularity==Popularity.UNIQUE}"
-            @click="options.popularity=Popularity.UNIQUE">Unique
-          </button>
-        </div>
-      </div>
-
-      <div class="option">
-        <h4>3) Length</h4>
-        <div class="buttons">
-          <button :class="{active: options.length==Length.ALL}" 
-            @click="options.length=Length.ALL">All
-          </button>
-          <button :class="{active: options.length==Length.LONG}" 
-            @click="options.length=Length.LONG">Long
-          </button>
-          <button :class="{active: options.length==Length.SHORT}" 
-            @click="options.length=Length.SHORT">Short
-          </button>
-        </div>
-      </div>
-
+      <Option v-for="option in optionsArray" :key="option.title" :option="option" :options="options" />
       <button class="primary" @click="findNames">Find names</button>
     </div>
     
     <div class="cards">
-      <div class="card" v-for="name in selectedNames">{{name}}</div>
+      <div class="card" :key="i" v-for="(name, i) in selectedNames">{{name}}</div>
     </div>
   </div>
 </template>
+
+<style>
+button {
+  background-color: white;
+  padding: 0.5rem;
+  flex-grow: 1;
+  border: none;
+  margin: 0 1px;
+  cursor: pointer;
+}
+</style>
 
 <style scoped>
 .container {
@@ -102,34 +89,11 @@
   padding-bottom: 2.5rem;
 }
 
-.buttons {
-  min-width: 240px;
-  display: flex;
-}
-
-button {
-  background-color: white;
-  padding: 0.5rem;
-  flex-grow: 1;
-  border: none;
-  margin: 0 1px;
-  cursor: pointer;
-}
-button:first-of-type {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-button:last-of-type {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-button.active, button.primary {
+button.primary {
   background-color: #fb9b9b;
   color: white;
-}
-
-button.primary {
   margin-top: 2rem;
+  border-radius: 4px;
 }
 
 .cards {
@@ -147,3 +111,4 @@ button.primary {
   border-radius: 4px;
 }
 </style>
+// 150
