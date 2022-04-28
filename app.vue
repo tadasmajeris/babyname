@@ -17,11 +17,11 @@
 
   const findNames = () => {
     const filteredNames = names.filter(name => name.gender == options.gender)
-                             .filter(name => name.popularity == options.popularity)
-                             .filter(name => {
-                               if (options.length === Length.ALL) return true
-                               else return name.length === options.length
-                             });
+                              .filter(name => name.popularity == options.popularity)
+                              .filter(name => {
+                                if (options.length === Length.ALL) return true
+                                else return name.length === options.length
+                              });
     selectedNames.value = filteredNames.map(n => n.name);
   }
 </script>
@@ -76,7 +76,9 @@
       <button class="primary" @click="findNames">Find names</button>
     </div>
     
-    <p>{{selectedNames}}</p>
+    <div class="cards">
+      <div class="card" v-for="name in selectedNames">{{name}}</div>
+    </div>
   </div>
 </template>
 
@@ -84,12 +86,14 @@
 .container {
   font-family: Arial, Helveticam sans-serif;
 }
-
+.options, .cards {
+  max-width: 330px;
+}
 .options {
+  box-sizing: border-box;
   background-color: #feeaea;
   padding: 1rem;
   border-radius: 0.5rem;
-  max-width: 300px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -126,5 +130,20 @@ button.active, button.primary {
 
 button.primary {
   margin-top: 2rem;
+}
+
+.cards {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  box-sizing: border-box;
+  width: calc(33.3% - 2px);
+  padding: 1rem;
+  text-align: center;
+  background: #ffd4d4;
+  margin: 1px;
+  border-radius: 4px;
 }
 </style>
