@@ -53,7 +53,7 @@
     </div>
     
     <div class="cards">
-      <div class="card" :key="i" v-for="(name, i) in selectedNames">{{name}}</div>
+      <CardName v-for="(name, i) in selectedNames" :key="i" :name="name" />
     </div>
   </div>
 </template>
@@ -100,15 +100,6 @@ button.primary {
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
-}
-.card {
-  box-sizing: border-box;
-  width: calc(33.3% - 2px);
-  padding: 1rem;
-  text-align: center;
-  background: #ffd4d4;
-  margin: 1px;
-  border-radius: 4px;
 }
 </style>
 // 150
