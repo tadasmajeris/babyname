@@ -35,24 +35,24 @@
       <div class="option">
         <h4>1) Gender</h4>
         <div class="buttons">
-          <button :class="{active: options.gender==Gender.BOY}">Boy</button>
-          <button :class="{active: options.gender==Gender.UNISEX}">Unisex</button>
-          <button :class="{active: options.gender==Gender.GIRL}">Girl</button>
+          <button :class="{active: options.gender==Gender.BOY}" @click="options.gender=Gender.BOY">Boy</button>
+          <button :class="{active: options.gender==Gender.UNISEX}" @click="options.gender=Gender.UNISEX">Unisex</button>
+          <button :class="{active: options.gender==Gender.GIRL}" @click="options.gender=Gender.GIRL">Girl</button>
         </div>
       </div>
       <div class="option">
         <h4>2) Popularity</h4>
         <div class="buttons">
-          <button :class="{active: options.popularity==Popularity.TRENDY}">Trendy</button>
-          <button :class="{active: options.popularity==Popularity.UNIQUE}">Unique</button>
+          <button :class="{active: options.popularity==Popularity.TRENDY}" @click="options.popularity=Popularity.TRENDY">Trendy</button>
+          <button :class="{active: options.popularity==Popularity.UNIQUE}" @click="options.popularity=Popularity.UNIQUE">Unique</button>
         </div>
       </div>
       <div class="option">
         <h4>3) Length</h4>
         <div class="buttons">
-          <button :class="{active: options.length==Length.ALL}">All</button>
-          <button :class="{active: options.length==Length.LONG}">Long</button>
-          <button :class="{active: options.length==Length.SHORT}">Short</button>
+          <button :class="{active: options.length==Length.ALL}" @click="options.length=Length.ALL">All</button>
+          <button :class="{active: options.length==Length.LONG}" @click="options.length=Length.LONG">Long</button>
+          <button :class="{active: options.length==Length.SHORT}" @click="options.length=Length.SHORT">Short</button>
         </div>
       </div>
     </div>
