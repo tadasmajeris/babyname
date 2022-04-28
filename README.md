@@ -6,7 +6,6 @@ Nuxt 3 Minimal Starter. [nuxt 3 documentation](https://v3.nuxtjs.org) to learn m
 Make sure to install the dependencies:
 
 ```bash
-# yarn
 yarn install
 ```
 
