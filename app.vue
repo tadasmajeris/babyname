@@ -1,19 +1,5 @@
 <script lang="ts" setup>
-  enum Gender {
-    GIRL = 'Girl',
-    BOY = 'Boy',
-    UNISEX = 'Unisex'
-  } 
-  
-  enum Popularity {
-    TRENDY = 'Trendy',
-    UNIQUE = 'Unique',
-  } 
-
-  enum Length {
-    SHORT = 'Short',
-    LONG = 'Long',
-  }
+  import {Gender, Popularity, Length, names} from './data'
 
   interface OptionsState {
     gender: string;
@@ -21,41 +7,76 @@
     length: string;
   }
 
-  const options = reactive<OptionsState>({
+  const options = reactive<OptionsState>({ // selected options
     gender: Gender.GIRL,
     popularity: Popularity.TRENDY,
     length: Length.SHORT
   });
+
+  const selectedNames = ref<string[]>([])
+
+  const findNames = () => {
+    const filteredNames = names.filter(name => name.gender == options.gender)
+                             .filter(name => name.popularity == options.popularity)
+                             .filter(name => {
+                               if (options.length === Length.ALL) return true
+                               else return name.length === options.length
+                             });
+    selectedNames.value = filteredNames.map(n => n.name);
+  }
 </script>
 
 <template>
   <div class="container">
     <h1>bbnm</h1>
     <div class="options">
+
       <div class="option">
         <h4>1) Gender</h4>
         <div class="buttons">
-          <button :class="{active: options.gender==Gender.BOY}" @click="options.gender=Gender.BOY">Boy</button>
-          <button :class="{active: options.gender==Gender.UNISEX}" @click="options.gender=Gender.UNISEX">Unisex</button>
-          <button :class="{active: options.gender==Gender.GIRL}" @click="options.gender=Gender.GIRL">Girl</button>
+          <button :class="{active: options.gender==Gender.BOY}" 
+            @click="options.gender=Gender.BOY">Boy
+          </button>
+          <button :class="{active: options.gender==Gender.UNISEX}" 
+            @click="options.gender=Gender.UNISEX">Unisex
+          </button>
+          <button :class="{active: options.gender==Gender.GIRL}"
+            @click="options.gender=Gender.GIRL">Girl
+          </button>
         </div>
       </div>
+
       <div class="option">
         <h4>2) Popularity</h4>
         <div class="buttons">
-          <button :class="{active: options.popularity==Popularity.TRENDY}" @click="options.popularity=Popularity.TRENDY">Trendy</button>
-          <button :class="{active: options.popularity==Popularity.UNIQUE}" @click="options.popularity=Popularity.UNIQUE">Unique</button>
+          <button :class="{active: options.popularity==Popularity.TRENDY}" 
+            @click="options.popularity=Popularity.TRENDY">Trendy
+          </button>
+          <button :class="{active: options.popularity==Popularity.UNIQUE}"
+            @click="options.popularity=Popularity.UNIQUE">Unique
+          </button>
         </div>
       </div>
+
       <div class="option">
         <h4>3) Length</h4>
         <div class="buttons">
-          <button :class="{active: options.length==Length.ALL}" @click="options.length=Length.ALL">All</button>
-          <button :class="{active: options.length==Length.LONG}" @click="options.length=Length.LONG">Long</button>
-          <button :class="{active: options.length==Length.SHORT}" @click="options.length=Length.SHORT">Short</button>
+          <button :class="{active: options.length==Length.ALL}" 
+            @click="options.length=Length.ALL">All
+          </button>
+          <button :class="{active: options.length==Length.LONG}" 
+            @click="options.length=Length.LONG">Long
+          </button>
+          <button :class="{active: options.length==Length.SHORT}" 
+            @click="options.length=Length.SHORT">Short
+          </button>
         </div>
       </div>
+
+      <button class="primary" @click="findNames">Find names</button>
     </div>
+    
+    <p>{{selectedNames}}</p>
   </div>
 </template>
 
@@ -98,8 +119,12 @@ button:last-of-type {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-button.active {
+button.active, button.primary {
   background-color: #fb9b9b;
   color: white;
+}
+
+button.primary {
+  margin-top: 2rem;
 }
 </style>
