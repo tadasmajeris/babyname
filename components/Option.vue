@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Gender, Popularity, Length } from "@/data"
 
-interface OptionProps {
+interface Props {
   option: {
     title: string;
     category: string;
@@ -14,7 +14,7 @@ interface OptionProps {
   }
 }
 
-const props = defineProps<OptionProps>()
+const props = defineProps<Props>()
 </script>
 
 <template>

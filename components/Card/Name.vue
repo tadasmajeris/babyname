@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-interface NameProps {
+interface Props {
   name: string;
 }
-const props = defineProps<NameProps>()
+const props = defineProps<Props>()
 </script>
 
 <template>
