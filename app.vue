@@ -42,6 +42,12 @@
       buttons: [Length.ALL, Length.SHORT, Length.LONG]
     }
   ]
+
+  const removeName = (index: number) => {
+    const filteredNames = [...selectedNames.value]
+    filteredNames.splice(index, 1);
+    selectedNames.value = filteredNames;
+  }
 </script>
 
 <template>
@@ -53,7 +59,7 @@
     </div>
     
     <div class="cards">
-      <CardName v-for="(name, i) in selectedNames" :key="i" :name="name" />
+      <CardName v-for="(name, i) in selectedNames" :key="i" :name="name" @remove="()=>removeName(i)" :index="i"/>
     </div>
   </div>
 </template>
@@ -74,7 +80,7 @@ button {
   font-family: Arial, Helveticam sans-serif;
 }
 .options, .cards {
-  max-width: 330px;
+  max-width: 320px;
 }
 .options {
   box-sizing: border-box;
