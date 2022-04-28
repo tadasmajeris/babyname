@@ -21,8 +21,12 @@ const props = defineProps<OptionProps>()
   <div class="option">
     <h4>{{option.title}}</h4>
     <div class="buttons">
-      <button v-for="value in option.buttons" :key="value" :class="{active: options[option.category]==value}" 
-        @click="options[option.category]=value">{{value}}
+      <button 
+        v-for="value in option.buttons" :key="value" 
+        :class="{active: options[option.category]==value}" 
+        @click="options[option.category]=value"
+      >
+        {{value}}
       </button>
     </div>
   </div>
